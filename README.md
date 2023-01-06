@@ -1,7 +1,14 @@
 # EasyCopy-WinFrom
+
 这是一个悬浮的复制粘贴板,用于复制粘贴文本
 
-操作说明:
+<img src="https://github.com/smartgrass/EasyCopy-WinFrom/blob/main/Imgs/Main.png" hight= "500"/>
+
+# 下载
+
+下载[EasyCopy3.2.zip](https://github.com/smartgrass/EasyCopy-WinFrom/blob/main/EasyCopy3.2.zip) ,解压即可使用
+
+# 操作说明:
 
 左键复制
 
@@ -9,9 +16,12 @@
 
 双击修改/删除
 
-左键最小化图标则显示
+最小化图标 :
 
-右键最小化图标则关闭
+左键显示,右键关闭
+
+<img src="https://github.com/smartgrass/EasyCopy-WinFrom/blob/main/Imgs/Down.png" hight= "50"/>
+
 
 # 修改配置
 
