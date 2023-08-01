@@ -9,7 +9,7 @@
 
 # 下载
 
-下载[EasyCopy3.2.zip](https://github.com/smartgrass/EasyCopy-WinFrom/blob/main/EasyCopy3.2.zip) ,解压即可使用
+下载[EasyCopy3.3.zip](https://github.com/smartgrass/EasyCopy-WinFrom/releases/tag/exe) ,解压即可使用
 
 如有扩展需求可修改源码。
 
