@@ -51,7 +51,7 @@ namespace EasyCopy
                 {
 
                     Note.SendMsg("123");
-                    
+
                     System.Environment.Exit(0);
                     return;
                 }
@@ -59,7 +59,12 @@ namespace EasyCopy
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            pageCount = int.Parse(ConfigurationSettings.AppSettings["pageCount"]);
+
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            pageCount = int.Parse(ConfigurationManager.AppSettings["pageCount"]);
+
+
             ReadHideArray();
             mainForm = new Form1();
             FirstLoad();
@@ -71,7 +76,7 @@ namespace EasyCopy
 
         private static void ReadHideArray()
         {
-            var hideArray = (ConfigurationSettings.AppSettings["Hide"]).Split(",".ToCharArray());
+            var hideArray = (ConfigurationManager.AppSettings["Hide"]).Split(",".ToCharArray());
             //Console.WriteLine("pageCount " + pageCount);
             isHideArray = new bool[pageCount];
 
@@ -94,7 +99,7 @@ namespace EasyCopy
         {
             public ItemData() { }
 
-            public ItemData(bool isHide , string str)
+            public ItemData(bool isHide, string str)
             {
                 this.isHide = isHide;
                 SetText(str);
@@ -107,7 +112,7 @@ namespace EasyCopy
                 text = t;
                 if (isHide)
                 {
-                    if(t.Length > 5)
+                    if (t.Length > 5)
                         hideText = t.Substring(0, 5) + "...";
                     else
                         hideText = "...";
@@ -166,7 +171,7 @@ namespace EasyCopy
             //Console.WriteLine("savaData.strListList) " + savaData.strListList.Count);
             foreach (var stringList in savaData.strListList)
             {
-                if(i >= pageCount)
+                if (i >= pageCount)
                 {
                     Console.WriteLine("Max pageCount");
                     continue;
@@ -220,9 +225,9 @@ namespace EasyCopy
 
         public static void ReadPage(int index)
         {
-            if(curDataLists.Count > 0)
+            if (curDataLists.Count > 0)
             {
-                while(curDataLists.Count <= pageCount)
+                while (curDataLists.Count <= pageCount)
                 {
                     curDataLists.Add(new List<ItemData>());
                 }
@@ -231,7 +236,7 @@ namespace EasyCopy
                 mainForm.listBox1.Items.Clear();
                 foreach (var item in strList)
                 {
-                    mainForm.listBox1.Items.Add( new CCWin.SkinControl.SkinListBoxItem( item.showTex));
+                    mainForm.listBox1.Items.Add(new CCWin.SkinControl.SkinListBoxItem(item.showTex));
                 }
             }
             else
@@ -244,5 +249,43 @@ namespace EasyCopy
 
 
 
+
+
+
     }
+
+
+    public static class Tools{
+        public static void AddUpdateAppSettings(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
+        }
+
+        public static string GetAppSettings(string key) {
+
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = configFile.AppSettings.Settings;
+            return settings[key].Value;
+        }
+
+    }
+
 }

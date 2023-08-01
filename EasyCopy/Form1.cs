@@ -22,32 +22,16 @@ namespace EasyCopy
         {
             base.OnLoad(e);
             Console.WriteLine("OnLoad");
-            var bgName = "Icon\\bg.png";
-            if (File.Exists(bgName))
-            {
-                var f = new FileInfo(bgName);
-                Console.WriteLine(f.FullName);
-                var image = Image.FromFile(f.FullName);
-                listBox1.Back = image;
-            }
-            else
-            {
-                listBox1.Back = null;
-            }
-            string colorStr = ConfigurationSettings.AppSettings["textColor"];
-            listBox1.ForeColor = ColorTranslator.FromHtml(colorStr);
 
-            float textSize = float.Parse(ConfigurationSettings.AppSettings["textSize"]);
-            int itemHeight = int.Parse(ConfigurationSettings.AppSettings["ItemHeight"]);
-            listBox1.Font = new Font("微软雅黑", textSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(200)));
-            listBox1.ItemHeight = itemHeight;
+            SetBgList();
+            SetFont();
         }
         public Form1()
         {
             Console.WriteLine("yns  InitializeComponent");
             InitializeComponent();
             tabs.Add(tabPage1); //Form自带一个页
-            tabPage1.Text = ConfigurationSettings.AppSettings["tabName1"];
+            tabPage1.Text = ConfigurationManager.AppSettings["tabName1"];
             //注意 i是从1开始
             for (int i = 1; i < pageCount; i++)
             {
@@ -59,8 +43,8 @@ namespace EasyCopy
             Point p = new Point(x, y);
             this.PointToScreen(p);
             this.Location = p;
-            Width = int.Parse(ConfigurationSettings.AppSettings["Width"]);
-            Height = int.Parse(ConfigurationSettings.AppSettings["Height"]);
+            Width = int.Parse(ConfigurationManager.AppSettings["Width"]);
+            Height = int.Parse(ConfigurationManager.AppSettings["Height"]);
 
             //this.Opacity = 0.8;
             //Process currentProcess = Process.GetCurrentProcess();
@@ -72,7 +56,7 @@ namespace EasyCopy
             tabs.Add(tabPage);
             SetPageLayout(tabPage);
             tabControl1.Controls.Add(tabPage);
-            tabPage.Text = ConfigurationSettings.AppSettings["tabName" + (i + 1)];
+            tabPage.Text = ConfigurationManager.AppSettings["tabName" + (i + 1)];
         }
 
         private void SetPageLayout(CCWin.SkinControl.SkinTabPage tabPage)
@@ -97,7 +81,7 @@ namespace EasyCopy
                 base.WndProc(ref m);
         }
 
-        public void OpenInputForm(InputForm form)
+        public void OpenInputForm(CCSkinMain form)
         {
             form.Shown += new EventHandler((Object obj, EventArgs e2) =>
             {
@@ -161,6 +145,32 @@ namespace EasyCopy
         {
             ReadPage(CurPage);
         }
+        public void ReSetTitle()
+        {
+            int length = tabs.Count;
+            for (int i = 0; i < length; i++)
+            {
+                var tab = tabs[i];
+                tab.Text = ConfigurationManager.AppSettings["tabName" + (i + 1)];
+            }
+        }        
+        
+        public void SetFont()
+        {
+            //Color
+            string colorStr = ConfigurationManager.AppSettings["textColor"];
+            listBox1.ForeColor = ColorTranslator.FromHtml(colorStr);
+
+            //itemHeight
+            int itemHeight = int.Parse(ConfigurationManager.AppSettings["ItemHeight"]);
+            listBox1.ItemHeight = itemHeight;
+
+            //textSize
+            string tsStr = ConfigurationManager.AppSettings["textSize"];
+            float textSize = float.Parse(tsStr);
+            listBox1.Font = new Font("微软雅黑", textSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(200)));
+        }
+
 
         public void AddOne(string s)
         {
@@ -305,6 +315,12 @@ namespace EasyCopy
 
         }
 
+
+        private void skinButton2_Click(object sender, EventArgs e)
+        {
+            SetBgList();
+        }
+
         private void notifyIcon1_Click(object sender, MouseEventArgs e)
         {
             Console.WriteLine(WindowState);
@@ -312,6 +328,7 @@ namespace EasyCopy
             {
                 if (!this.Visible)
                 {
+                    SetBgList();
                     this.Visible = true;
                 }
                 else
@@ -337,6 +354,44 @@ namespace EasyCopy
 
         private void skinToolTip1_Popup(object sender, PopupEventArgs e)
         {
+
+        }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+
+            SettingForm form = new SettingForm();
+
+            //form.SetStr(curDataLists[CurPage][index].text);
+            
+            OpenInputForm(form);
+        }
+
+
+        private void SetBgList()
+        {
+
+            string[] filenames = Directory.GetFiles("Icon");
+            filenames = Array.FindAll(filenames, f => (f.EndsWith(".png")||f.EndsWith(".jpg")));
+
+            foreach (var item in filenames)
+            {
+                Console.WriteLine(item);
+            }
+
+            if (filenames.Length > 0)
+            {
+                int seek = unchecked((int)DateTime.Now.Ticks);
+                int index = new Random(seek).Next(0, filenames.Length);
+                var f = new FileInfo(filenames[index]);
+                Console.WriteLine(f.FullName);
+                var image = Image.FromFile(f.FullName);
+                listBox1.Back = image;
+            }
+            else
+            {
+                listBox1.Back = null;
+            }
 
         }
     }

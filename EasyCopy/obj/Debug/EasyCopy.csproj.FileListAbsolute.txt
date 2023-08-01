@@ -1,0 +1,17 @@
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.csproj.AssemblyReference.cache
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.csproj.SuggestedBindingRedirects.cache
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.Form1.resources
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.InputForm.resources
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.Properties.Resources.resources
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.csproj.GenerateResource.cache
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.csproj.CoreCompileInputs.cache
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\EasyCopy.exe.config
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\EasyCopy.exe
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\EasyCopy.pdb
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\CSkin.dll
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\LitJSON.dll
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\bin\Debug\CSkin.xml
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.csproj.CopyComplete
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.exe
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.pdb
+D:\yns\GithHub\EasyCopy-WinFrom\EasyCopy\obj\Debug\EasyCopy.SettingForm.resources

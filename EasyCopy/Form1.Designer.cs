@@ -36,44 +36,19 @@ namespace EasyCopy
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.listBox1 = new CCWin.SkinControl.SkinListBox();
             this.button2 = new CCWin.SkinControl.SkinButton();
             this.button3 = new CCWin.SkinControl.SkinButton();
             this.button1 = new CCWin.SkinControl.SkinButton();
-            this.tabControl1 = new CCWin.SkinControl.SkinTabControl();
-            this.tabPage1 = new CCWin.SkinControl.SkinTabPage();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.button4 = new CCWin.SkinControl.SkinButton();
+            this.skinButton1 = new CCWin.SkinControl.SkinButton();
+            this.tabControl1 = new CCWin.SkinControl.SkinTabControl();
+            this.tabPage1 = new CCWin.SkinControl.SkinTabPage();
+            this.listBox1 = new CCWin.SkinControl.SkinListBox();
+            this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.Back = null;
-            this.listBox1.BackColor = System.Drawing.Color.White;
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.listBox1.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(200)));
-            this.listBox1.ForeColor = System.Drawing.Color.Black;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ImagePoint = false;
-            this.listBox1.ImageVisble = false;
-            this.listBox1.ItemHeight = 40;
-            this.listBox1.ItemHoverGlassVisble = true;
-            this.listBox1.ItemImageLayout = false;
-            this.listBox1.ItemRadius = 20;
-            this.listBox1.Location = new System.Drawing.Point(3, 3);
-            this.listBox1.MouseColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
-            this.listBox1.Name = "listBox1";
-            this.listBox1.RowBackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
-            this.listBox1.RowBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
-            this.listBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
-            this.listBox1.Size = new System.Drawing.Size(329, 480);
-            this.listBox1.TabIndex = 0;
-            //this.listBox1.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.listBox1_MeasureItem_1);
-            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnListDoubleClick);
-            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnListBoxMouseDown);
             // 
             // button2
             // 
@@ -129,6 +104,54 @@ namespace EasyCopy
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnAddBtn);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Easy Copy";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_Click);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BaseColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button4.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.button4.DownBack = null;
+            this.button4.Font = new System.Drawing.Font("宋体", 10F);
+            this.button4.Location = new System.Drawing.Point(109, 543);
+            this.button4.MouseBack = null;
+            this.button4.Name = "button4";
+            this.button4.NormlBack = null;
+            this.button4.Size = new System.Drawing.Size(27, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "×";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnDeletePageBtn);
+            // 
+            // skinButton1
+            // 
+            this.skinButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.skinButton1.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton1.BaseColor = System.Drawing.SystemColors.ActiveCaption;
+            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton1.DownBack = null;
+            this.skinButton1.Font = new System.Drawing.Font("宋体", 10F);
+            this.skinButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skinButton1.Image = global::EasyCopy.Properties.Resources._3_1_设置;
+            this.skinButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.skinButton1.Location = new System.Drawing.Point(291, 542);
+            this.skinButton1.MouseBack = null;
+            this.skinButton1.Name = "skinButton1";
+            this.skinButton1.NormlBack = null;
+            this.skinButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.skinButton1.Size = new System.Drawing.Size(29, 23);
+            this.skinButton1.TabIndex = 8;
+            this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -170,33 +193,54 @@ namespace EasyCopy
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(335, 486);
             this.tabPage1.TabIndex = 0;
+            this.tabPage1.TabItemImage = null;
             // 
-            // notifyIcon1
+            // listBox1
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "Easy Copy";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_Click);
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.listBox1.Back = null;
+            this.listBox1.BackColor = System.Drawing.Color.White;
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.listBox1.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(200)));
+            this.listBox1.ForeColor = System.Drawing.Color.Black;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ImagePoint = false;
+            this.listBox1.ImageVisble = false;
+            this.listBox1.ItemHeight = 40;
+            this.listBox1.ItemHoverGlassVisble = true;
+            this.listBox1.ItemImageLayout = false;
+            this.listBox1.ItemRadius = 20;
+            this.listBox1.Location = new System.Drawing.Point(3, 3);
+            this.listBox1.MouseColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
+            this.listBox1.Name = "listBox1";
+            this.listBox1.RowBackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
+            this.listBox1.RowBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
+            this.listBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(130)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
+            this.listBox1.Size = new System.Drawing.Size(329, 480);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnListDoubleClick);
+            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnListBoxMouseDown);
             // 
-            // button4
+            // skinButton2
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BaseColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.button4.DownBack = null;
-            this.button4.Font = new System.Drawing.Font("宋体", 10F);
-            this.button4.Location = new System.Drawing.Point(109, 543);
-            this.button4.MouseBack = null;
-            this.button4.Name = "button4";
-            this.button4.NormlBack = null;
-            this.button4.Size = new System.Drawing.Size(27, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "×";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            this.button4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnDeletePageBtn);
+            this.skinButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.skinButton2.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton2.BaseColor = System.Drawing.SystemColors.ActiveCaption;
+            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton2.DownBack = null;
+            this.skinButton2.Font = new System.Drawing.Font("宋体", 10F);
+            this.skinButton2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skinButton2.Image = global::EasyCopy.Properties.Resources.刷新;
+            this.skinButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.skinButton2.Location = new System.Drawing.Point(256, 542);
+            this.skinButton2.MouseBack = null;
+            this.skinButton2.Name = "skinButton2";
+            this.skinButton2.NormlBack = null;
+            this.skinButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.skinButton2.Size = new System.Drawing.Size(29, 23);
+            this.skinButton2.TabIndex = 9;
+            this.skinButton2.UseVisualStyleBackColor = false;
+            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
             // Form1
             // 
@@ -204,6 +248,8 @@ namespace EasyCopy
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(338, 573);
+            this.Controls.Add(this.skinButton2);
+            this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
@@ -229,6 +275,7 @@ namespace EasyCopy
 
 
 
+
         #endregion
 
         public List<TabPage> tabs = new List<TabPage>();
@@ -240,6 +287,8 @@ namespace EasyCopy
         private CCWin.SkinControl.SkinTabPage tabPage1;
         private CCWin.SkinControl.SkinButton button4;
         public CCWin.SkinControl.SkinListBox listBox1;
+        private CCWin.SkinControl.SkinButton skinButton1;
+        private CCWin.SkinControl.SkinButton skinButton2;
     }
 }
 
