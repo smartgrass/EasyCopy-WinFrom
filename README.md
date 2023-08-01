@@ -30,13 +30,13 @@
 
 ## 配置文件: EasyCopy.exe.config
  
-textColor :字体颜色 
-
 pageCount : 自定义页数
 
 tabName+数字 : 对应页的名字 (tabName个数和pageCount要保持一致))
 
 Height/Width : 调整窗体大小
+
+textColor :字体颜色 
 
 Hide: 加密显示 ,多页用逗号隔开 如 "5,6"
 
