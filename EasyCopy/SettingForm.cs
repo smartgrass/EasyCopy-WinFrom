@@ -86,6 +86,8 @@ namespace EasyCopy
 
                 string colorStr = ColorTranslator.ToHtml(button2.BackColor);
                 Tools.AddUpdateAppSettings("textColor", colorStr);
+
+                Program.mainForm.SaveCurImgColor(colorStr);
                 return true;
 
             }
@@ -95,7 +97,11 @@ namespace EasyCopy
                 return false;
             }
 
-        }        
+        }
+
+
+
+
         private void ReadOther()
         {
             int textSize = int.Parse(Tools.GetAppSettings("textSize"));

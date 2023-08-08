@@ -8,6 +8,8 @@ using System.Diagnostics;
 using CCWin;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace EasyCopy
 {
@@ -17,6 +19,7 @@ namespace EasyCopy
         public const int WM_SYSCOMMAND = 0x112;
         public const int SC_RESTORE = 0xF120;
         public Color textColor = Color.Black;
+        public string curImgName = "";
 
         protected override void OnLoad(EventArgs e)
         {
@@ -24,7 +27,7 @@ namespace EasyCopy
             Console.WriteLine("OnLoad");
 
             SetBgList();
-            SetFont();
+
         }
         public Form1()
         {
@@ -159,7 +162,7 @@ namespace EasyCopy
         {
             //Color
             string colorStr = ConfigurationManager.AppSettings["textColor"];
-            listBox1.ForeColor = ColorTranslator.FromHtml(colorStr);
+            SetFontColor(colorStr);
 
             //itemHeight
             int itemHeight = int.Parse(ConfigurationManager.AppSettings["ItemHeight"]);
@@ -169,6 +172,12 @@ namespace EasyCopy
             string tsStr = ConfigurationManager.AppSettings["textSize"];
             float textSize = float.Parse(tsStr);
             listBox1.Font = new Font("微软雅黑", textSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(200)));
+        }
+
+
+        public void SetFontColor(string colorStr)
+        {
+            listBox1.ForeColor = ColorTranslator.FromHtml(colorStr);
         }
 
 
@@ -386,6 +395,10 @@ namespace EasyCopy
                 var f = new FileInfo(filenames[index]);
                 Console.WriteLine(f.FullName);
                 var image = Image.FromFile(f.FullName);
+                curImgName = f.Name;
+                //读取文件名 并设置字体颜色
+                SetFontColor(GetColor(f.Name));
+
                 listBox1.Back = image;
             }
             else
@@ -393,6 +406,66 @@ namespace EasyCopy
                 listBox1.Back = null;
             }
 
+
+            SetFont();
         }
+
+
+        private string GetColor(string fileName)
+        {
+           string colorStr = ExtractValueInsideBrackets(fileName);
+            if (colorStr == null)
+            {
+                //默认
+                colorStr = ConfigurationManager.AppSettings["textColor"];
+            }
+            return colorStr;
+        }
+
+        public static string ExtractValueInsideBrackets(string input)
+        {
+            string pattern = @"\[(.*?)\]";
+            Match match = Regex.Match(input, pattern);
+
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        //正则表达式替换
+        static string ReplaceValueInsideBrackets(string input, string newValue)
+        {
+            string pattern = @"\[.*?\]";
+            string replacedPath = Regex.Replace(input, pattern, "[" + newValue + "]");
+            return replacedPath;
+        }
+
+
+        public void SaveCurImgColor(string setColorStr)
+        {
+            string colorStr = ExtractValueInsideBrackets(curImgName);
+            string newName = "";
+
+            if (colorStr == null)
+            {
+                newName = string.Format("[{0}]{1}", setColorStr, curImgName);
+            }
+            else
+            {
+                newName = ReplaceValueInsideBrackets(curImgName, setColorStr);
+            }
+            ReNameFile(curImgName,newName);
+        }
+
+        private void ReNameFile(string old,string newName)
+        {
+            //string dirPath,
+            File.Move(old, newName);
+        }
+
     }
 }
