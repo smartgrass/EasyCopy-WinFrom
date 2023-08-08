@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Runtime.InteropServices.ComTypes;
+using IDataObject = System.Windows.Forms.IDataObject;
 
 namespace EasyCopy
 {
@@ -160,10 +161,6 @@ namespace EasyCopy
         
         public void SetFont()
         {
-            //Color
-            string colorStr = ConfigurationManager.AppSettings["textColor"];
-            SetFontColor(colorStr);
-
             //itemHeight
             int itemHeight = int.Parse(ConfigurationManager.AppSettings["ItemHeight"]);
             listBox1.ItemHeight = itemHeight;
@@ -308,20 +305,6 @@ namespace EasyCopy
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            //if (this.WindowState == FormWindowState.Normal)
-            //{
-            //    this.WindowState = FormWindowState.Minimized;
-            //    this.Hide();
-
-            //}
-            //if (this.WindowState == FormWindowState.Minimized)
-            //{
-            //    //this.Show();
-            //    //this.Activate();
-            //    this.WindowState = FormWindowState.Normal;
-            //    this.Activate();
-            //}
-
         }
 
 
@@ -394,10 +377,15 @@ namespace EasyCopy
                 int index = new Random(seek).Next(0, filenames.Length);
                 var f = new FileInfo(filenames[index]);
                 Console.WriteLine(f.FullName);
-                var image = Image.FromFile(f.FullName);
+
+                Stream s = File.Open(f.FullName, FileMode.Open);
+                //var image = Image.FromFile(f.FullName);
+                var image = Image.FromStream(s);
+                s.Close();
+
                 curImgName = f.Name;
                 //读取文件名 并设置字体颜色
-                SetFontColor(GetColor(f.Name));
+                SetFontColor();
 
                 listBox1.Back = image;
             }
@@ -405,14 +393,16 @@ namespace EasyCopy
             {
                 listBox1.Back = null;
             }
-
-
-            SetFont();
         }
 
-
-        private string GetColor(string fileName)
+        public void SetFontColor()
         {
+            SetFontColor(GetCurColor());
+        }
+
+        public string GetCurColor()
+        {
+           string fileName = curImgName;
            string colorStr = ExtractValueInsideBrackets(fileName);
             if (colorStr == null)
             {
@@ -422,6 +412,8 @@ namespace EasyCopy
             return colorStr;
         }
 
+
+        //正则表达式 查找
         public static string ExtractValueInsideBrackets(string input)
         {
             string pattern = @"\[(.*?)\]";
@@ -463,8 +455,15 @@ namespace EasyCopy
 
         private void ReNameFile(string old,string newName)
         {
-            //string dirPath,
-            File.Move(old, newName);
+            string dirPath ="Icon";
+
+            newName = Path.Combine(Application.StartupPath, dirPath, newName);
+            old = Path.Combine(Application.StartupPath,dirPath, old);
+
+            curImgName = newName;
+
+            FileInfo fileInfo = new FileInfo(old);
+            fileInfo.MoveTo(newName);
         }
 
     }

@@ -37,6 +37,8 @@ namespace EasyCopy
                 Program.mainForm.ReSetTitle();
 
                 Program.mainForm.SetFont();
+
+                Program.mainForm.SetFontColor();
             }
         }
 
@@ -110,7 +112,7 @@ namespace EasyCopy
             textBox2.Text = textSize.ToString();
             textBox3.Text = ItemHeight.ToString();
 
-            string colorStr = ConfigurationManager.AppSettings["textColor"];
+            string colorStr = Program.mainForm.GetCurColor();
             button2.BackColor = ColorTranslator.FromHtml(colorStr);
 
         }
