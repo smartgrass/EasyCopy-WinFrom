@@ -1,8 +1,8 @@
 # EasyCopy
 
-这是一个复制粘贴板小工具 
+这是一个复制粘贴板小工具 , 作为个人开发者的一直使用的秘密武器
 
-使用时可悬浮在窗口上，可以用于保存常用的文本（如常用命令行）
+比起电脑自带粘贴板, 这个工具可以持久化保存
 
 <img src="https://github.com/smartgrass/EasyCopy-WinFrom/blob/main/Imgs/Main.png" hight= "500"/>
 
